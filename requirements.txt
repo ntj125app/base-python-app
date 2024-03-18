@@ -1,4 +1,8 @@
 fastapi
+uvicorn
+sentry_sdk
 worker
 celery
 pytest
+jinja2
+redis
