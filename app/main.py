@@ -1,9 +1,7 @@
-from fastapi import FastAPI, Body, Request
+from fastapi import FastAPI, Body
 import sentry_sdk
 import os
 from fastapi.responses import JSONResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from worker import create_task
 from celery.result import AsyncResult
 
@@ -17,14 +15,6 @@ sentry_sdk.init(
 )
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
-
-
-@app.get("/")
-def home(request: Request):
-    return templates.TemplateResponse("home.html", context={"request": request})
-
 
 @app.get("/app/healthcheck")
 def read_root():
