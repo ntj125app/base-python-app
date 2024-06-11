@@ -3,8 +3,8 @@ uvicorn
 sentry_sdk
 worker
 celery
-flower
 pytest
 jinja2
 redis
+
 pandas
