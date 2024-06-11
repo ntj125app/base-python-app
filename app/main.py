@@ -48,7 +48,7 @@ class TaskModel(BaseModel):
 @app.post("/api/task-submit")
 def submit_task(args: TaskModel | None):
     argsDict = args.dict().pop("task_args")
-    argsList = list(argsDict.values())
+    argsList = list(argsDict.values() if argsDict else [])
     task = celery.send_task(args.task_name, args=argsList)
     return JSONResponse({"task_id": task.id, "task_name": args.task_name, "task_args": argsDict})
 
