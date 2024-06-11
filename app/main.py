@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI
+from pydantic import BaseModel
 import sentry_sdk
 import os
 from fastapi.responses import JSONResponse
@@ -40,10 +41,16 @@ def get_active_tasks():
     return JSONResponse(tasks)
 
 # Submit task API
-@app.post("/api/task-submit/{task_name}")
-def submit_task(task_name):
-    task = celery.send_task(task_name)
-    return JSONResponse({"task_id": task.id})
+class TaskModel(BaseModel):
+    task_name: str
+    task_args: dict | str | None = None
+
+@app.post("/api/task-submit")
+def submit_task(args: TaskModel | None):
+    argsDict = args.dict().pop("task_args")
+    argsList = list(argsDict.values())
+    task = celery.send_task(args.task_name, args=argsList)
+    return JSONResponse({"task_id": task.id, "task_name": args.task_name, "task_args": argsDict})
 
 # Task status API
 @app.get("/api/task-status/{task_id}")
