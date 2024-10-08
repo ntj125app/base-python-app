@@ -9,3 +9,4 @@ requests
 
 pandas
 psycopg
+pendulum<3
