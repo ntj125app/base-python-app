@@ -1,10 +1,10 @@
 fastapi
 uvicorn
 sentry_sdk
-worker
 celery
 pytest
 redis
 requests
 
 pandas
+psycopg[binary]
