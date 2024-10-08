@@ -2,7 +2,7 @@ FROM python:slim
 
 ENV SENTRY_PYTHON_DSN=""
 
-RUN apt-get update && apt-get install -y gcc musl-dev && mkdir /app
+RUN apt-get update && apt-get install -y gcc musl-dev cargo && mkdir /app
 
 WORKDIR /app
 
