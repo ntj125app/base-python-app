@@ -8,4 +8,4 @@ redis
 requests
 
 pandas
-psycopg[binary]
+psycopg
