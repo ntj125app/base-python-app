@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
-from worker import celery
 from celery.result import AsyncResult
 
 router = APIRouter()
