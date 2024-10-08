@@ -8,5 +8,4 @@ redis
 requests
 
 pandas
-psycopg
-pendulum<3
+psycopg[binary]
