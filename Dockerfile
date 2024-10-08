@@ -2,7 +2,7 @@ FROM python:slim
 
 ENV SENTRY_PYTHON_DSN=""
 
-RUN apt-get update && apt-get install -y gcc musl-dev libpq5 && mkdir /app
+RUN apt-get update && apt-get install -y gcc musl-dev cargo libpq5 && mkdir /app
 
 WORKDIR /app
 
