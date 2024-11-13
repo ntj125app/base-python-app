@@ -4,10 +4,7 @@ ENV SENTRY_PYTHON_DSN=""
 
 COPY requirements.txt ./
 
-RUN apt-get update && apt-get install -y gcc musl-dev && mkdir /app  && \
-    pip install --no-cache-dir -r requirements.txt && \
-    apt-get autoremove -y gcc musl-dev && \
-    apt-get autoclean -y
+RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /app
 
